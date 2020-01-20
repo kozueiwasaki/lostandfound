@@ -13,9 +13,10 @@
 ## postsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|image|text||
-|text|text||
-|user_id|integer|null: false, foreign_key: true|
+|image|string||
+|text|string||
+|place|string||
+|user_id|references|foreign_key: true|
 ### Association
 - belongs_to :user
 - has_many :comments
@@ -24,8 +25,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
-|user_id|integer|null: false, foreign_key: true|
-|tweet_id|integer|null: false, foreign_key: true|
+|user_id|references|null: false, foreign_key: true|
+|tweet_id|references|null: false, foreign_key: true|
 ### Association
 - belongs_to :post
 - belongs_to :user
