@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:edit, :show]
+
   def index
     @posts = Post.all
   end
@@ -11,9 +13,30 @@ class PostsController < ApplicationController
     Post.create(post_params)
   end
 
-  private
-  def post_params
-    params.require(:post).permit(:item, :image, :place)
+  def destroy
+    post = Post.find(params[:id])
+    post.destroy
   end
 
+  def edit
+    
+  end
+
+  def update
+    post = Post.find(params[:id])
+    post.update(post_params)
+  end
+
+  def show
+    
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:item, :image, :place, :limitation).merge(user_id: current_user.id)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 end
