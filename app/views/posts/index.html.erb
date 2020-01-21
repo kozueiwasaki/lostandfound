@@ -1,1 +1,10 @@
-hello
+<div class="contents row">
+  <% @posts.each do |post| %>
+    <div class="content_post" style="background-image: url(<%= post.image %>);">
+      <p><%= post.item %></p>
+      <span class="name">
+        <%= post.limitation %>
+      </span>
+    </div>
+  <% end %>
+</div>
