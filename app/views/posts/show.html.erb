@@ -1,43 +1,46 @@
-<div class ="contents row">
-  <div class="content_post" style="background-image: url(<%= @post.image %>);">
-    <% if user_signed_in? && current_user.admin?%>
-      <div class="more">
-        <span><%= image_tag 'arrow_top.png' %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '編集', "/posts/#{@post.id}/edit", method: :get %>
+<div class ="contents">
+    <div class= "content">
+      <img class="content-image" src="<%= @post.image %>">
+      <div class="content-text">
+        <div class="content-text__info">
+          <p class="item"><%= @post.item %></p><br>
+          <p>習得場所：<%= @post.place %></p>
+          <p>保管期限：<%= @post.limitation %>迄</p>
+        </div>
+        <ul class="content-text__menu">
+          <li class="content-text__menu-list">
+            <%= link_to "詳細", "/posts/#{@post.id}", method: :get, class: "content-text__menu-list__btn" %>
           </li>
-          <li>
-            <%= link_to '削除', "/posts/#{@post.id}", method: :delete %>
-          </li>
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="content-text__menu-list">
+              <%= link_to "編集", "/posts/#{@post.id}/edit", method: :get, class: "content-text__menu-list__btn" %>
+            </li>
+            <li class="content-text__menu-list">
+              <%= link_to "削除", "/posts/#{@post.id}", method: :delete, class: "content-text__menu-list__btn" %>
+            </li>
+          <% end %>
         </ul>
       </div>
-    <% end %>
-    <p><%= @post.item %></p>
-      <span class="name">
-        保管期限：<%= @post.limitation %>
-      </span>
-  </div>
-  <div class="container">
+    </div>
+
+
+  <div class="comments">
     <% if current_user %>
-      <%= form_with(model: [@post, @comment], local: true) do |form| %>
-        <%= form.text_area :text, placeholder: "コメントする", rows: "2" %>
-        <%= form.submit "SEND" %>
+      <%= form_with(model: [@post, @comment], local:true, class: "comment-form") do |form| %>
+        <%= form.text_area :text, placeholder: "コメント", rows: "5", class: "comment-text"%>
+        <%= form.submit "SEND", class: "comment-btn"%>
       <% end %>
     <% else %>
-      <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+      <p class="warning">***コメントの投稿には新規登録/ログインが必要です***<p>
     <% end %>
-
-    <div class="comments">
-      <h4>＜コメント一覧＞</h4>
-      <% if @comments %>
-        <% @comments.each do |comment| %>
-          <p>
-            <strong><%= comment.user.name %>（<%= comment.user.room_num %>号室）：</strong>
-            <%= comment.text %>
-          </p>
-        <% end %>
+    <strong><h4>＜コメント一覧＞</h4></strong>
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+        <p class="comment-index">
+          <strong><%= comment.user.name %>（<%= comment.user.room_num %>号室）：</strong>
+          <%= comment.text %>
+        </p>
       <% end %>
-    </div>
+    <% end %>
   </div>
 </div>

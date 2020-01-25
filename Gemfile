@@ -62,3 +62,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem  'devise'
 gem 'compass-rails', '3.1.0'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'font-awesome-sass', '~>5.4.1'
+gem 'kaminari'

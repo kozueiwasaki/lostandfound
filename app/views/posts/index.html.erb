@@ -1,26 +1,30 @@
-<div class="contents row">
+<div class="contents">
   <% @posts.each do |post| %>
-    <div class="content_post" style="background-image: url(<%= post.image %>);">
-      <div class="more">
-        <span><%= image_tag 'arrow_top.png' %></span>
-        <ul class="more_list">
-          <li>
-            <%= link_to '詳細', "/posts/#{post.id}", method: :get %>
+    <div class= "content">
+      <%= image_tag post.image.url, class: 'content-image' %>
+      <div class="content-text">
+        <div class="content-text__info">
+          <p class="item"><%= post.item %></p><br>
+          <p>拾得場所：<%= post.place %></p>
+          <p>保管期限：<%= post.limitation %>迄</p>
+        </div>
+        <ul class="content-text__menu">
+          <li class="content-text__menu-list">
+            <%= link_to "詳細", "/posts/#{post.id}", method: :get, class: "content-text__menu-list__btn" %>
           </li>
-          <% if user_signed_in? && current_user.admin?%>
-            <li>
-              <%= link_to '編集', "/posts/#{post.id}/edit", method: :get %>
+          <% if user_signed_in? && current_user.admin? %>
+            <li class="content-text__menu-list">
+              <%= link_to "編集", "/posts/#{post.id}/edit", method: :get, class: "content-text__menu-list__btn" %>
             </li>
-            <li>
-              <%= link_to '削除', "/posts/#{post.id}", method: :delete %>
+            <li class="content-text__menu-list">
+              <%= link_to "削除", "/posts/#{post.id}", method: :delete, class: "content-text__menu-list__btn" %>
             </li>
           <% end %>
         </ul>
       </div>
-      <p><%= post.item %></p>
-      <span class="name">
-        保管期限：<%= post.limitation %>
-      </span>
     </div>
   <% end %>
+  <div class="page">
+    <%= paginate(@posts)%>
+  </div>
 </div>

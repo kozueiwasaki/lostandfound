@@ -1,14 +1,19 @@
-<div class="contents row">
+<div class="contents">
   <div class="container">
-    <%= form_with(model: @post, local: true) do |form| %>
+    <%= form_with(model: @post, local: true, class: "post-form") do |form| %>
       <h3>
         投稿する
       </h3>
-      <%= form.text_field :item, placeholder: "item" %>
-      <%= form.text_field :image, placeholder: "Image Url" %>
-      <%= form.text_field :place, placeholder: "place" %>
-      <%= form.text_field :limitation, placeholder: "storage limitation" %>
-      <%= form.submit "SEND" %>
+      <div class="post-item">
+        <%= form.text_field :item, placeholder: "item", class: "post-field", id:"post-item__field" %>
+        <%= form.label :image, class:"post-item__image" do %>
+          <%= icon('fas', 'image', class:"post-item__image__icon") %>
+          <%= form.file_field :image, class:"post-item__image__file"%>
+        <% end %>
+      </div>
+      <%= form.text_field :place, placeholder: "place", class: "post-field" %>
+      <%= form.text_field :limitation, placeholder: "storage limitation",class: "post-field" %>
+      <%= form.submit "SEND", class:"post-btn" %>
     <% end %>
   </div>
 </div>
