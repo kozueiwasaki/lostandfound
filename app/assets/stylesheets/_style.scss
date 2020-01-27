@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  
 }
 
 
@@ -52,8 +53,8 @@ header{
   margin-bottom: 0 20px;
 }
 .content{
-  height: 600px;
-  width: 600px;
+  height: 602px;
+  width: 602px;
   margin: 20px auto;
   border: 1px solid gray;
   background-color: white;
@@ -71,18 +72,55 @@ header{
       }
       .item{
         font-size:20px;
-        
       }
     }
-    .content-text__menu{
+    
 
-      .content-text__menu-list{
-        
-        .content-text__menu-list__btn{
-          
-          color: #333;
-        }
-      }
+
+    .gnav {
+      display: flex;
+      height: 2rem;
+      width: 70px;
+      float: right;
+    }
+    .gnav > li {
+        width: 100%;
+    }
+    .gnav li {
+        list-style: none;
+        position: relative;
+    }
+    .gnav li a {
+      background: #001b34;
+      border-right: 1px solid #eee;
+      color: #fff;
+      display: block;
+      height: 2rem;
+      line-height: 2rem;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+    }
+    .gnav li li {
+      height: 0;
+      overflow: hidden;
+      transition: .5s;
+    }
+    .gnav li li a:hover{
+      background-color: #4682b4;
+    }
+    .gnav li li a {
+      border-top: 1px solid #eee;
+    }
+    .gnav li:hover > ul > li {
+      height: 2rem;
+      overflow: visible;
+    }
+    .gnav li ul li ul {
+      left: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
     }
   }
 }
