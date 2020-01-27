@@ -8,18 +8,22 @@
           <p>拾得場所：<%= post.place %></p>
           <p>保管期限：<%= post.limitation %>迄</p>
         </div>
-        <ul class="content-text__menu">
-          <li class="content-text__menu-list">
-            <%= link_to "詳細", "/posts/#{post.id}", method: :get, class: "content-text__menu-list__btn" %>
+        <ul class="gnav">
+          <li><a href="">Menu</a>
+            <ul>
+              <li>
+                <%= link_to "詳細", "/posts/#{post.id}", method: :get %>
+              </li>
+              <% if user_signed_in? && current_user.admin? %>
+                <li>
+                  <%= link_to "編集", "/posts/#{post.id}/edit", method: :get %>
+                </li>
+                <li>
+                  <%= link_to "削除", "/posts/#{post.id}", method: :delete %>
+                </li>
+              <% end %>
+            </ul>
           </li>
-          <% if user_signed_in? && current_user.admin? %>
-            <li class="content-text__menu-list">
-              <%= link_to "編集", "/posts/#{post.id}/edit", method: :get, class: "content-text__menu-list__btn" %>
-            </li>
-            <li class="content-text__menu-list">
-              <%= link_to "削除", "/posts/#{post.id}", method: :delete, class: "content-text__menu-list__btn" %>
-            </li>
-          <% end %>
         </ul>
       </div>
     </div>
